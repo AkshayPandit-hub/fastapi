@@ -9,7 +9,7 @@ async def get_users(db:db_dependency, user_id:int | None = None):
     if user_id is None:
         return db.query(User).all()
     
-    user = find_user_by_id
+    user = find_user_by_id(db,user_id)
     
     if user is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="User not found")
